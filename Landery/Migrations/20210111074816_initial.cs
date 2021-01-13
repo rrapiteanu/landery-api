@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Landery.Migrations
@@ -28,15 +29,14 @@ namespace Landery.Migrations
                 {
                     PropertyId = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    ThumbnailUrl = table.Column<string>(type: "text", nullable: true),
                     Address = table.Column<string>(type: "text", nullable: true),
                     Bedrooms = table.Column<int>(type: "integer", nullable: false),
                     Bathrooms = table.Column<int>(type: "integer", nullable: false),
                     Pets = table.Column<bool>(type: "boolean", nullable: false),
-                    Price = table.Column<double>(type: "double precision", nullable: false)
+                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    Amenities = table.Column<List<string>>(type: "text[]", nullable: true)
                 },
                 constraints: table =>
                 {

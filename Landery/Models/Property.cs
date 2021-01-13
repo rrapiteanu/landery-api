@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 
 namespace Landery.Models
@@ -13,13 +15,23 @@ namespace Landery.Models
         public Guid UserId { get; set; }
         [JsonIgnore]
         public virtual User User { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
         public string Address { get; set; }
+        [Range(1, 9)]
+        [Required]
         public int Bedrooms { get; set; }
+        [Range(1, 9)]
+        [Required]
         public int Bathrooms { get; set; }
+        [Required]
         public bool Pets { get; set; }
+
+        [Range(0.0, Double.MaxValue)]
         public double Price { get; set; }
+        public List<string> Amenities { get; set; }
 
         [JsonPropertyName("images")]
         public virtual ICollection<PropertyImage> PropertyImages { get; set; }
@@ -29,7 +41,7 @@ namespace Landery.Models
         public virtual ICollection<Booking> Bookings { get; set; }
 
 
-        public static Property Create(string name, User user, double price, int bathrooms, int bedrooms, bool pets, string description)
+        public static Property Create(string name, User user, double price, int bathrooms, int bedrooms, bool pets, string description, List<string> amenities)
         {
             return new Property
             {
@@ -40,7 +52,8 @@ namespace Landery.Models
                 Price = price,
                 Bathrooms = bathrooms,
                 Bedrooms = bedrooms,
-                Pets = pets
+                Pets = pets,
+                Amenities = amenities
             };
         }
 

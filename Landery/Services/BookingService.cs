@@ -34,13 +34,30 @@ namespace Landery.Services
             {
                 throw new Exception("property doesn't exist");
             }
-            // de facut check pentru startdate si endate
+            // check pentru startdate si endate
+            List<Booking> bookings = GetBookingsForProperty(id).ToList();
 
+            if (!checkDates(bookings, startDate, endDate))
+            {
+                throw new Exception("already booked");
+            }
             Booking booking = Booking.Create(property, user, startDate, endDate);
             _context.Bookings.Add(booking);
             _context.SaveChanges();
 
             return booking;
+        }
+
+        private bool IsBewteenTwoDates(DateTime date, DateTime start, DateTime end)
+        {
+            return date >= start && date <= end;
+        }
+
+        private bool checkDates(List<Booking> bookings, DateTime startDate, DateTime endDate)
+        {
+          var check1 = !bookings.Any(m => IsBewteenTwoDates(startDate, m.StartDate, m.EndDate));
+          var check2 = !bookings.Any(m => IsBewteenTwoDates(endDate, m.StartDate, m.EndDate));
+            return check1 && check2;
         }
 
         public IEnumerable<Booking> GetBookings(User user)

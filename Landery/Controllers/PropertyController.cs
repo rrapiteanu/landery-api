@@ -63,7 +63,8 @@ namespace Landery.Controllers
                         Description = property.Description,
                         Name = property.Name,
                         UserId = property.UserId,
-                        PropertyImages = property.PropertyImages
+                        PropertyImages = property.PropertyImages,
+                        Amenities = property.Amenities
                     });
                 }
 
@@ -88,7 +89,8 @@ namespace Landery.Controllers
                         Description = property.Description,
                         Name = property.Name,
                         UserId =property.UserId,
-                        PropertyImages = property.PropertyImages
+                        PropertyImages = property.PropertyImages,
+                        Amenities = property.Amenities
                     });
                 }
 
@@ -146,7 +148,8 @@ namespace Landery.Controllers
                     Description = property.Description,
                     Name = property.Name,
                     UserId = property.UserId,
-                    PropertyImages = property.PropertyImages
+                    PropertyImages = property.PropertyImages,
+                    Amenities = property.Amenities
                 });
             }
             else
@@ -164,7 +167,8 @@ namespace Landery.Controllers
                     Description = property.Description,
                     Name = property.Name,
                     UserId = property.UserId,
-                    PropertyImages = property.PropertyImages
+                    PropertyImages = property.PropertyImages,
+                    Amenities = property.Amenities
                 });
             }
         }
@@ -217,6 +221,7 @@ namespace Landery.Controllers
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
         public bool Pets { get; set; }
+        public List<string> Amenities { get; set; }
         public double Price { get; set; }
         [JsonPropertyName("images")]
         public virtual ICollection<PropertyImage> PropertyImages { get; set; }

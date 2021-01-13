@@ -37,7 +37,8 @@ namespace Landery.Services
                     int bedrooms, bool pets, string description,
                     double price, IList<string> images, IList<string> amenities)     
         {
-            Property property = Property.Create(name, user, price, bathrooms, bedrooms, pets, description);
+            List<string> amenities_list = amenities.ToList();
+            Property property = Property.Create(name, user, price, bathrooms, bedrooms, pets, description, amenities_list);
             _context.Properties.Add(property);
 
             foreach (var image in images)
